@@ -1,0 +1,42 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "com.github.jengelman.gradle.plugins:shadow:6.1.0"
+    }
+}
+
+plugins {
+    id 'java'
+}
+
+group = 'com.example'
+sourceCompatibility = '1.8'
+
+repositories {
+    mavenCentral()
+}
+
+apply plugin: "com.github.johnrengelman.shadow"
+
+dependencies {
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.13.3'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.13.3'
+    compile group: 'joda-time', name: 'joda-time', version: '2.9.4'
+
+    compile group: 'com.mchange', name: 'c3p0', version: '0.9.5.5'
+    compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.6'
+
+    compile 'org.apache.httpcomponents:httpclient:4.5.12'
+
+    compile 'com.google.code.gson:gson:2.7'
+
+}
+
+
+shadowJar {
+    manifest {
+        attributes 'Main-Class': 'main'
+    }
+}
